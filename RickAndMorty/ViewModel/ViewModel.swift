@@ -25,6 +25,14 @@ class ViewModel: NSObject {
            }
        }
     
+    private(set) var episodes : [Episodes]! {
+           didSet {
+               self.bindViewModelToController()
+           }
+       }
+    
+    
+    
     
     var bindViewModelToController: (() -> ()) = {}
     
@@ -54,6 +62,31 @@ class ViewModel: NSObject {
             switch res {
             case .success(let success):
                 self.infoCharacter = success
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
+    
+    func getLocation(id: Int) {
+        
+        self.apiCaller.getLocation(id: id) { res in
+            switch res {
+            case .success(let success):
+                self.infoCharacter = success
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        
+    }
+    
+    func getEpisode() {
+        
+        self.apiCaller.getEpisodes { res in
+            switch res {
+            case .success(let success):
+                self.episodes = success
             case .failure(let failure):
                 print(failure)
             }

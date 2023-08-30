@@ -2,9 +2,10 @@ import UIKit
 
 class DescriptionVC: UIViewController {
     
-    let episodes: [String] = ["Episode 1", "Episode 2", "Episode 3", "Episode 4", "Episode 3", "Episode 4", "Episode 3", "Episode 4"]
-
+    var episodes: [Episodes] = [Episodes(id: 2, name: "as", air_date: "!2", episode: "as")]
     
+    var viewModel: ViewModel!
+
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +58,7 @@ class DescriptionVC: UIViewController {
     
     lazy private var collection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 327, height: 86)
+        layout.itemSize = CGSize(width: 340, height: 86)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(EpisodeCell.self, forCellWithReuseIdentifier: EpisodeCell.identifier)
         collection.translatesAutoresizingMaskIntoConstraints = false
@@ -70,27 +71,61 @@ class DescriptionVC: UIViewController {
     
     let originView = OriginView()
     
+    let infoView = InfoView()
     
+    let infoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Info"
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+//        setupUI()
         collection.delegate = self
         collection.dataSource = self
+    }
+    
+    func callToViewModelForUIUpdate() {
+        
+        self.viewModel = ViewModel()
+        self.viewModel.getEpisode()
+        self.viewModel.bindViewModelToController = {
+            
+            self.updateDataSource()
+        }
+    }
+    
+    func updateDataSource() {
+        DispatchQueue.main.async { [self] in
+            episodes = viewModel.episodes
+            collection.reloadData()
+            setupUI()
+        }
     }
     
     private func setupUI() {
           view.backgroundColor = UIColor(red: 0.02, green: 0.05, blue: 0.12, alpha: 1)
         originView.translatesAutoresizingMaskIntoConstraints = false
+        infoView.translatesAutoresizingMaskIntoConstraints = false
+        infoView.layer.cornerRadius = 16
           view.addSubview(scrollView)
           scrollView.addSubview(contentView)
+        
           originView.backgroundColor = UIColor(red: 0.15, green: 0.16, blue: 0.22, alpha: 1)
+          infoView.backgroundColor = UIColor(red: 0.15, green: 0.16, blue: 0.22, alpha: 1)
+        
           contentView.addSubview(profileImageView)
           contentView.addSubview(originView)
           contentView.addSubview(nameLabel)
           contentView.addSubview(episodesLabel)
           contentView.addSubview(originLabel)
           contentView.addSubview(collection)
+          contentView.addSubview(infoView)
+          contentView.addSubview(infoLabel)
           
           NSLayoutConstraint.activate([
               scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -112,12 +147,22 @@ class DescriptionVC: UIViewController {
               nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 20),
               nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
               
-              originLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+              infoLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+              infoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+              
+              
+              infoView.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 20),
+              infoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+              infoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+              infoView.heightAnchor.constraint(equalToConstant: 150),
+
+              
+              originLabel.topAnchor.constraint(equalTo: infoView.bottomAnchor, constant: 20),
               originLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
 
               originView.topAnchor.constraint(equalTo: originLabel.bottomAnchor, constant: 20),
               originView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-              originView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 24),
+              originView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
               originView.heightAnchor.constraint(equalToConstant: 100),
 
               
@@ -131,14 +176,24 @@ class DescriptionVC: UIViewController {
               collection.heightAnchor.constraint(equalToConstant: CGFloat(episodes.count * 100))
           ])
       }
+    
+    func configure(_ char: CharacterInfo) {
+        if let urlImage = char.image {
+            profileImageView.kf.setImage(with: URL(string: urlImage))
+        }
+        nameLabel.text = char.name
+        infoView.configure(char)
+        originView.configure(char)
+        callToViewModelForUIUpdate()
 
+        
+    }
 
 }
 
 
 extension DescriptionVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(episodes.count)
         return episodes.count
     }
     

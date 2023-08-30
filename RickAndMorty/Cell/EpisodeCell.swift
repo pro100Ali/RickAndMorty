@@ -60,9 +60,11 @@ class EpisodeCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(_ character: String) {
+    func configure(_ character: Episodes) {
      
-        title.text = character
+        title.text = character.name
+        date.text = character.air_date
+        episode.text = character.episode
     }
     
     func setupConstraints() {

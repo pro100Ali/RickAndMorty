@@ -81,7 +81,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DescriptionVC()
-//        vc.configure(character[indexPath.row])
+        vc.configure(character[indexPath.row])
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

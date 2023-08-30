@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		411A235A2A9A0E9C0032DE57 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A23592A9A0E9C0032DE57 /* InfoView.swift */; };
 		4154B4B12A99F9ED003C367E /* OriginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4154B4B02A99F9EC003C367E /* OriginView.swift */; };
 		41D5AC152A98E78800F8D3C4 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D5AC142A98E78800F8D3C4 /* EpisodeCell.swift */; };
 		41E2B0402A977A7E0057B0D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E2B03F2A977A7E0057B0D9 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		411A23592A9A0E9C0032DE57 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		4154B4B02A99F9EC003C367E /* OriginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginView.swift; sourceTree = "<group>"; };
 		41D5AC142A98E78800F8D3C4 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		41E2B03C2A977A7E0057B0D9 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 			children = (
 				41E2B0532A9784E30057B0D9 /* CharacterCell.swift */,
 				41D5AC142A98E78800F8D3C4 /* EpisodeCell.swift */,
+				411A23592A9A0E9C0032DE57 /* InfoView.swift */,
 				4154B4B02A99F9EC003C367E /* OriginView.swift */,
 			);
 			path = Cell;
@@ -208,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41E2B0442A977A7E0057B0D9 /* ViewController.swift in Sources */,
+				411A235A2A9A0E9C0032DE57 /* InfoView.swift in Sources */,
 				41E2B0582A97DED50057B0D9 /* APICaller.swift in Sources */,
 				4154B4B12A99F9ED003C367E /* OriginView.swift in Sources */,
 				41E2B05A2A97E3DF0057B0D9 /* CharacterList.swift in Sources */,

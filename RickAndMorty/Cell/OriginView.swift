@@ -58,9 +58,10 @@ class OriginView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(_ character: String) {
-     
-        title.text = character
+    
+    func configure(_ character: CharacterInfo) {
+        title.text = character.origin?.name
+        
     }
     
     func setupConstraints() {
