@@ -40,3 +40,8 @@ struct Episodes: Codable {
     let episode: String?
     
 }
+
+struct Arushok: Codable {
+    let id: Int?
+    let name: Int?
+}
