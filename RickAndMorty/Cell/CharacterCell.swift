@@ -60,7 +60,7 @@ class CharacterCell: UICollectionViewCell {
             image.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             image.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             image.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -54),
-
+            
             title.centerXAnchor.constraint(equalTo: centerXAnchor),
             title.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
             title.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16)
