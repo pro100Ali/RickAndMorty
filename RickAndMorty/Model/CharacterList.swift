@@ -45,3 +45,7 @@ struct Human: Codable {
     let id: Int?
     
 }
+
+struct Car: Codable {
+    let endgine: Int?
+}
