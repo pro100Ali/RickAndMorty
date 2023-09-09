@@ -84,17 +84,20 @@ class DescriptionVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupUI()
         collection.delegate = self
         collection.dataSource = self
+        self.navigationItem.titleView?.backgroundColor = .red
+        contentView.backgroundColor = .red
+
     }
     
     func callToViewModelForUIUpdate() {
         
         self.viewModel = ViewModel()
+        
         self.viewModel.getEpisode()
+        
         self.viewModel.bindViewModelToController = {
-            
             self.updateDataSource()
         }
     }
@@ -139,10 +142,10 @@ class DescriptionVC: UIViewController {
               contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
               contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 
-              profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+              profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -30),
               profileImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor) ,
-              profileImageView.widthAnchor.constraint(equalToConstant: 100),
-              profileImageView.heightAnchor.constraint(equalToConstant: 100),
+              profileImageView.widthAnchor.constraint(equalToConstant: 148),
+              profileImageView.heightAnchor.constraint(equalToConstant: 148),
               
               nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 20),
               nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -177,6 +180,7 @@ class DescriptionVC: UIViewController {
           ])
       }
     
+    
     func configure(_ char: CharacterInfo) {
         if let urlImage = char.image {
             profileImageView.kf.setImage(with: URL(string: urlImage))
@@ -185,7 +189,6 @@ class DescriptionVC: UIViewController {
         infoView.configure(char)
         originView.configure(char)
         callToViewModelForUIUpdate()
-
         
     }
 
