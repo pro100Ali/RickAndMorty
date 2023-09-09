@@ -74,9 +74,9 @@
 		41E2B03E2A977A7E0057B0D9 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				41E2B0602A97F1890057B0D9 /* ViewModel */,
 				41E2B0632A97F1A90057B0D9 /* Controller */,
 				41E2B0622A97F1A20057B0D9 /* Model */,
-				41E2B0602A97F1890057B0D9 /* ViewModel */,
 				41E2B0612A97F1990057B0D9 /* Cell */,
 				41E2B0642A97F1B80057B0D9 /* Manager */,
 				41E2B0482A977A800057B0D9 /* Assets.xcassets */,
