@@ -41,7 +41,6 @@ struct Episodes: Codable {
     
 }
 
-struct Arushok: Codable {
+struct Hello: Codable {
     let id: Int?
-    let name: Int?
 }
