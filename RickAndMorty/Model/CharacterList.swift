@@ -41,11 +41,7 @@ struct Episodes: Codable {
     
 }
 
-struct Arushok: Codable {
+struct Human: Codable {
     let id: Int?
-    let name: Int?
-}
-
-struct Ali: Codable {
-    let name: String?
+    
 }
