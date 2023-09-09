@@ -45,3 +45,8 @@ struct Arushok: Codable {
     let id: Int?
     let name: Int?
 }
+
+struct Plane: Codable {
+    let id: Int?
+    let name: Int?
+}
